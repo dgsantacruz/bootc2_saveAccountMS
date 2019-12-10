@@ -5,7 +5,7 @@ import com.everis.savingaccount.Service.SavingAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.everis.savingaccount.Model.savingAccount;
+import com.everis.savingaccount.Model.SavingAccount;
 
 import reactor.core.publisher.Flux;
 
@@ -16,7 +16,7 @@ public class savingAccountController
     private SavingAccountService service;
 
     //Get all accounts
-    public Flux<savingAccount> getAllAccounts()
+    public Flux<SavingAccount> getAllAccounts()
     {
         return service.findAllAccounts();
     }

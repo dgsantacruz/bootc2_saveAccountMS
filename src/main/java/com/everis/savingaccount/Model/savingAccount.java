@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 @Document(collection = "savingaccdb")
-public class savingAccount
+public class SavingAccount
 {
     @Id
     private String id;
