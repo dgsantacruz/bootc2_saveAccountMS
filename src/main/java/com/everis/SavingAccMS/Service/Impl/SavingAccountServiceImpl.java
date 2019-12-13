@@ -16,24 +16,29 @@ public class SavingAccountServiceImpl implements SavingAccountService {
     @Autowired
     private SavingAccountRepo repo;
 
+    //Create Account
+    @Override
+    public Mono<SavingAccount> addAccount(SavingAccount account) 
+    {
+        return repo.save(account);
+    }
+
+    //Delete Account
+    @Override
+    public Mono<Void> delAccount(SavingAccount account) 
+    {
+        return repo.delete(account);
+    }
+
+    //Get All Accounts
     @Override
     public Flux<SavingAccount> findAllAccounts() {
         return repo.findAll();
     }
 
-    @Override
-    public Mono<SavingAccount> findByNumber(String number) {
-        return repo.findById(number);
-    }
 
-    @Override
-    public Mono<SavingAccount> addAccount(SavingAccount account) {
-        return repo.save(account);
-    }
 
-    @Override
-    public Mono<Void> delAccount(SavingAccount account) {
-        return repo.delete(account);
-    }
+
+
     
 }

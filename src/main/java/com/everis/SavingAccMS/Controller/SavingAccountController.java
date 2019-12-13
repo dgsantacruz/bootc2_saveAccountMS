@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.everis.SavingAccMS.Model.SavingAccount;
 
 import reactor.core.publisher.Flux;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import reactor.core.publisher.Mono;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController()
 @RequestMapping("/savingacc")
@@ -19,15 +22,24 @@ public class SavingAccountController
     @Autowired
     private SavingAccountServiceImpl service;
 
-    @GetMapping("/test")
-    public String testing()
-    {
-        return "Test";
+    //Create new Account
+    @PostMapping()
+    public Mono<SavingAccount> createNewAccount(SavingAccount account) {
+        return service.addAccount(account);
     }
 
-    //Get account by number
+    //Delete Account
+    @DeleteMapping()
+    public Mono<Void> deleteAccount(SavingAccount account) {
+        return service.delAccount(account);
+    }
 
-    //Create account
-
-    //Delete account
+    //Get All Accounts
+    @GetMapping(value="path")
+    public Flux<SavingAccount> getAllAccounts() {
+        return service.findAllAccounts();
+    }
+    
+    
+    
 }
