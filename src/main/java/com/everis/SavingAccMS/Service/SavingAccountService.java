@@ -1,6 +1,6 @@
-package com.everis.savingaccount.Service;
+package com.everis.SavingAccMS.Service;
 
-import com.everis.savingaccount.Model.SavingAccount;
+import com.everis.SavingAccMS.Model.SavingAccount;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.everis</groupId>
-	<artifactId>savingaccount</artifactId>
+	<artifactId>SavingAccMS</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>savingaccount</name>
+	<name>SavingAccMS</name>
 	<description>Saving Account Microservice</description>
 
 	<properties>
@@ -57,13 +57,14 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
 		<dependency>
 			<groupId>io.projectreactor</groupId>
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 
-				<dependency>
+		<dependency>
     		<groupId>io.springfox</groupId>
     		<artifactId>springfox-swagger2</artifactId>
     		<version>3.0.0-SNAPSHOT</version>
@@ -79,6 +80,12 @@
     		<artifactId>springfox-swagger-ui</artifactId>
     		<version>3.0.0-SNAPSHOT</version>
 			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.3</version>
 		</dependency>
 
 	</dependencies>

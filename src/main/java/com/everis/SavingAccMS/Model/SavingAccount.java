@@ -1,4 +1,4 @@
-package com.everis.savingaccount.Model;
+package com.everis.SavingAccMS.Model;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Data;
 
 @Data
-@Document(collection = "savingaccdb")
+@Document(collection = "SavingAccs")
 public class SavingAccount
 {
     @Id

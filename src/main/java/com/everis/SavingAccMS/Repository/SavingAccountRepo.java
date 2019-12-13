@@ -1,6 +1,6 @@
-package com.everis.savingaccount.Repository;
+package com.everis.SavingAccMS.Repository;
 
-import com.everis.savingaccount.Model.SavingAccount;
+import com.everis.SavingAccMS.Model.SavingAccount;
 
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 

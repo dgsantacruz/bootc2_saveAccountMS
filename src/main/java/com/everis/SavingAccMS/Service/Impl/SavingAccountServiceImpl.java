@@ -1,8 +1,8 @@
-package com.everis.savingaccount.Service.Impl;
+package com.everis.SavingAccMS.Service.Impl;
 
-import com.everis.savingaccount.Model.SavingAccount;
-import com.everis.savingaccount.Repository.SavingAccountRepo;
-import com.everis.savingaccount.Service.SavingAccountService;
+import com.everis.SavingAccMS.Model.SavingAccount;
+import com.everis.SavingAccMS.Repository.SavingAccountRepo;
+import com.everis.SavingAccMS.Service.SavingAccountService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
