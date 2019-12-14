@@ -13,29 +13,27 @@ import reactor.core.publisher.Mono;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController()
-@RequestMapping("/savingacc")
 public class SavingAccountController
 {
     @Autowired
     private SavingAccountServiceImpl service;
 
     //Create new Account
-    @PostMapping()
+    @PostMapping("/savingacc/create")
     public Mono<SavingAccount> createNewAccount(SavingAccount account) {
         return service.addAccount(account);
     }
 
     //Delete Account
-    @DeleteMapping()
+    @DeleteMapping("/savingacc/delete")
     public Mono<Void> deleteAccount(SavingAccount account) {
         return service.delAccount(account);
     }
 
     //Get All Accounts
-    @GetMapping(value="path")
+    @GetMapping("/savingacc/all")
     public Flux<SavingAccount> getAllAccounts() {
         return service.findAllAccounts();
     }
