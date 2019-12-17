@@ -12,31 +12,68 @@ import reactor.core.publisher.Mono;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController()
+@RequestMapping("/savingacc")
 public class SavingAccountController
 {
     @Autowired
     private SavingAccountServiceImpl service;
 
+    //Get All Accounts
+    @GetMapping("/all")
+    public Flux<SavingAccount> getAllAccounts() 
+    {
+        return service.findAllAccounts();
+    }
+
+    //Get account by number
+    @GetMapping("/number/{number}")
+    public Mono<SavingAccount> getAccountByNumber(@PathVariable String number) 
+    {
+        return service.findByNumber(number);
+    }
+
+    //Get accounts by owners
+    @GetMapping("/owner/{owner}")
+    public Flux<SavingAccount> getAccountsByOwner(@PathVariable String owner) 
+    {
+        return service.findByOwner(owner);
+    }
+
     //Create new Account
-    @PostMapping("/savingacc/create")
-    public Mono<SavingAccount> createNewAccount(SavingAccount account) {
+    @PostMapping
+    public Mono<SavingAccount> createAccount(@RequestBody SavingAccount account) {
         return service.addAccount(account);
     }
 
-    //Delete Account
-    @DeleteMapping("/savingacc/delete")
-    public Mono<Void> deleteAccount(SavingAccount account) {
-        return service.delAccount(account);
+    //Update account
+    @PutMapping("/edit/{number}")
+    public Mono<SavingAccount> editAccount(@RequestBody SavingAccount account,@PathVariable String number)
+    {
+        return service.findByNumber(number)
+                        .flatMap(a -> 
+                        {
+                            a.setNumber(account.getNumber());
+                            a.setOwner(account.getOwner());
+                            a.setCurrency(account.getCurrency());
+                            return service.addAccount(a);
+                        });
     }
 
-    //Get All Accounts
-    @GetMapping("/savingacc/all")
-    public Flux<SavingAccount> getAllAccounts() {
-        return service.findAllAccounts();
+    //Delete Account
+    @DeleteMapping("/delete/{number}")
+    public Mono<Void> deleteAccount(@PathVariable String number)
+    {
+        return service.findByNumber(number).flatMap(a -> service.delAccount(a));
     }
+
+
     
     
     

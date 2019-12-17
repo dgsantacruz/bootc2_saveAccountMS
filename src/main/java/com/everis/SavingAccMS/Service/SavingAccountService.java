@@ -7,12 +7,23 @@ import reactor.core.publisher.Mono;
 
 public interface SavingAccountService
 {
-    //Create account
+    //Get All accounts
+    public Flux<SavingAccount> findAllAccounts();
+
+    //Get account by number
+    public Mono<SavingAccount> findByNumber(String number);
+
+    //Get account by owner
+    public Flux<SavingAccount> findByOwner(String owner);
+
+    //Create account data
     public Mono<SavingAccount> addAccount(SavingAccount account);
 
-    //Delete account
+    //Update account data
+    public Mono<SavingAccount> updateAccount(SavingAccount account);
+
+    //Delete account data
     public Mono<Void> delAccount(SavingAccount account);
 
-    //Find All accounts
-    public Flux<SavingAccount> findAllAccounts();
+
 }
