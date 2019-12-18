@@ -1,5 +1,7 @@
 package com.everis.SavingAccMS.Model;
 
+import java.util.Set;
+
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.annotation.Id;
@@ -18,13 +20,13 @@ public class SavingAccount
     private String number;
 
     @NotBlank
-    private String owner;
+    private Set<Owner> owners;
 
     @NotBlank
     private String currency;
 
     @NotBlank
-    private double balance;
+    private double balance = 0.00;
 
     @NotBlank
     private String status;

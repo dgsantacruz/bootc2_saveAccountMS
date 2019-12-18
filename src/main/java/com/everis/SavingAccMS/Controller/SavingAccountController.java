@@ -39,12 +39,12 @@ public class SavingAccountController
         return service.findByNumber(number);
     }
 
-    //Get accounts by owners
-    @GetMapping("/owner/{owner}")
-    public Flux<SavingAccount> getAccountsByOwner(@PathVariable String owner) 
-    {
-        return service.findByOwner(owner);
-    }
+    // //Get accounts by owners
+    // @GetMapping("/owner/{owner}")
+    // public Flux<SavingAccount> getAccountsByOwner(@PathVariable String owner) 
+    // {
+    //     return service.findByOwner(owner);
+    // }
 
     //Create new Account
     @PostMapping
@@ -60,7 +60,7 @@ public class SavingAccountController
                         .flatMap(a -> 
                         {
                             a.setNumber(account.getNumber());
-                            a.setOwner(account.getOwner());
+                            // a.setOwner(account.getOwner());
                             a.setCurrency(account.getCurrency());
                             return service.addAccount(a);
                         });

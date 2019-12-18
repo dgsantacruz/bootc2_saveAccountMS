@@ -11,5 +11,5 @@ public interface SavingAccountRepo extends ReactiveMongoRepository<SavingAccount
 {
     Mono<SavingAccount> findByNumber(String number);
 
-    Flux<SavingAccount> findByOwner(String owner);
+    // Flux<SavingAccount> findByOwner(String owner);
 }

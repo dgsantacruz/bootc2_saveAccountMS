@@ -13,8 +13,8 @@ public interface SavingAccountService
     //Get account by number
     public Mono<SavingAccount> findByNumber(String number);
 
-    //Get account by owner
-    public Flux<SavingAccount> findByOwner(String owner);
+    // //Get account by owner
+    // public Flux<SavingAccount> findByOwner(String owner);
 
     //Create account data
     public Mono<SavingAccount> addAccount(SavingAccount account);
