@@ -31,12 +31,12 @@ public class SavingAccountServiceImpl implements SavingAccountService
         return repo.findByNumber(number);
     }
 
-    // //Get account by Owner
-    // @Override
-    // public Flux<SavingAccount> findByOwner(String owner) 
-    // {
-    //     return repo.findByOwner(owner);
-    // }
+    //Get account by Owner
+    @Override
+    public Mono<SavingAccount> findByOwner_Name(String owner) 
+    {
+        return repo.findByOwner_Name(owner);
+    }
 
     //Create Account
     @Override

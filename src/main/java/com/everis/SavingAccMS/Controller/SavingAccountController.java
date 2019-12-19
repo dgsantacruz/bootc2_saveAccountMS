@@ -5,6 +5,7 @@ import com.everis.SavingAccMS.Service.Impl.SavingAccountServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.everis.SavingAccMS.DTO.SavingAccountDTO;
 import com.everis.SavingAccMS.Model.SavingAccount;
 
 import reactor.core.publisher.Flux;
@@ -39,12 +40,19 @@ public class SavingAccountController
         return service.findByNumber(number);
     }
 
-    // //Get accounts by owners
-    // @GetMapping("/owner/{owner}")
-    // public Flux<SavingAccount> getAccountsByOwner(@PathVariable String owner) 
-    // {
-    //     return service.findByOwner(owner);
-    // }
+    //Get accounts by owners
+    @GetMapping("/owner/{name}")
+    public Mono<SavingAccount> getAccountByOwner(@PathVariable String name) 
+    {
+        return service.findByOwner_Name(name);
+    }
+
+    //Get accounts by owners (DTO)
+    @GetMapping("/ownerdto/{name}")
+    public Mono<SavingAccountDTO> getAccountByOwnerDTO(@PathVariable String name) 
+    {
+        return service.findByOwner_Name(name).map(account -> new SavingAccountDTO(account.getNumber(), account.getCurrency()));
+    }
 
     //Create new Account
     @PostMapping

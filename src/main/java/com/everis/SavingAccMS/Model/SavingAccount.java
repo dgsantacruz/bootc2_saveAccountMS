@@ -1,6 +1,6 @@
 package com.everis.SavingAccMS.Model;
 
-import java.util.Set;
+import java.security.acl.Owner;
 
 import javax.validation.constraints.NotBlank;
 
@@ -20,7 +20,7 @@ public class SavingAccount
     private String number;
 
     @NotBlank
-    private Set<Owner> owners;
+    private Owner owner;
 
     @NotBlank
     private String currency;
