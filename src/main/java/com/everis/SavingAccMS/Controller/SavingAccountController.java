@@ -61,12 +61,19 @@ public class SavingAccountController
         return service.findByOwnerDni(dni);
     }
 
-    // //Get accounts by owner Dni (DTO)
-    // @GetMapping("/ownerdto/{name}")
-    // public Mono<SavingAccountDTO> getAccountByOwnerDTO(@PathVariable String name) 
-    // {
-    //     return service.findByOwner_Name(name).map(account -> new SavingAccountDTO(account.getNumber(), account.getCurrency()));
-    // }
+    //Get accounts by owner Dni (DTO)
+    @GetMapping("/ownerdto/ltest/{message}")
+    public String littletest(@PathVariable String message) 
+    {
+        return "Working test, new test! " + message;
+    }
+
+    //Get accounts by owner Dni (DTO)
+    @GetMapping("/ownerdto/{dni}")
+    public Mono<SavingAccountDTO> getAccountByOwnerDTO(@PathVariable String dni) 
+    {
+        return service.findByOwnerDni(dni).map(account -> new SavingAccountDTO(account.getNumber(), account.getCurrency()));
+    }
 
     //Create new Account
     @PostMapping

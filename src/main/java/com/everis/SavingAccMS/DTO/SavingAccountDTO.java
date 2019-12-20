@@ -17,4 +17,6 @@ public class SavingAccountDTO
         this.number = number;
         this.currency = currency;
     }
+
+    public SavingAccountDTO(){};
 }
