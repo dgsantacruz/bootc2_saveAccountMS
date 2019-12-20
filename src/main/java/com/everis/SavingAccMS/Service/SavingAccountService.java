@@ -14,8 +14,11 @@ public interface SavingAccountService
     //Get account by number
     public Mono<SavingAccount> findByNumber(String number);
 
+    // //Get account by owner
+    // public Mono<SavingAccount> findByOwner_Name(String name);
+
     //Get account by owner
-    public Mono<SavingAccount> findByOwner_Name(String name);
+    public Mono<SavingAccount> findByOwner(Owner owner);
 
     //Create account data
     public Mono<SavingAccount> addAccount(SavingAccount account);
