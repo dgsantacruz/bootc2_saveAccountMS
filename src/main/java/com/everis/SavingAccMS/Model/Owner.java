@@ -5,5 +5,7 @@ import lombok.Data;
 @Data
 public class Owner
 {
-    public String dni;
+    private String dni;
+
+    private String name;
 }

@@ -1,6 +1,5 @@
 package com.everis.SavingAccMS.Service.Impl;
 
-import com.everis.SavingAccMS.Model.Owner;
 import com.everis.SavingAccMS.Model.SavingAccount;
 import com.everis.SavingAccMS.Repository.SavingAccountRepo;
 import com.everis.SavingAccMS.Service.SavingAccountService;
@@ -25,6 +24,13 @@ public class SavingAccountServiceImpl implements SavingAccountService
         return repo.findAll();
     }
 
+    //Get all accounts DTO
+    @Override
+    public Flux<SavingAccount> findAllAccountsDTO() 
+    {
+        return null;
+    }
+
     //Get account by Number
     @Override
     public Mono<SavingAccount> findByNumber(String number) 
@@ -32,18 +38,25 @@ public class SavingAccountServiceImpl implements SavingAccountService
         return repo.findByNumber(number);
     }
 
-    // //Get account by Owner
-    // @Override
-    // public Mono<SavingAccount> findByOwner_Name(String owner) 
-    // {
-    //     return repo.findByOwner_Name(owner);
-    // }
-
-    //Get account by Owner
+    //Get account by Number DTO
     @Override
-    public Mono<SavingAccount> findByOwner(Owner owner) 
+    public Mono<SavingAccount> findByNumberDTO(String number) 
     {
-        return repo.findByOwner(owner);
+        return null;
+    }
+
+    //Get account by Owner Dni
+    @Override
+    public Mono<SavingAccount> findByOwnerDni(String dni) 
+    {
+        return repo.findByOwner_Dni(dni);
+    }
+
+    //Get account by Owner Dni DTO
+    @Override
+    public Mono<SavingAccount> findByOwnerDniDTO(String dni) 
+    {
+        return repo.findByOwner_Dni(dni);
     }
 
     //Create Account
@@ -66,12 +79,4 @@ public class SavingAccountServiceImpl implements SavingAccountService
     {
         return repo.delete(account);
     }
-
-
-
-
-
-
-
-    
 }

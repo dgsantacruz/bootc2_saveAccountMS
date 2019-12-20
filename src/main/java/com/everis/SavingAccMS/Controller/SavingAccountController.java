@@ -33,21 +33,35 @@ public class SavingAccountController
         return service.findAllAccounts();
     }
 
-    //Get account by number
-    @GetMapping("/number/{number}")
-    public Mono<SavingAccount> getAccountByNumber(@PathVariable String number) 
-    {
-        return service.findByNumber(number);
-    }
-
-    // //Get accounts by owners
-    // @GetMapping("/owner/{name}")
-    // public Mono<SavingAccount> getAccountByOwner(@PathVariable String name) 
+    // //Get All Accounts DTO
+    // @GetMapping("/alldto")
+    // public Flux<SavingAccount> getAllAccountsDTO() 
     // {
-    //     return service.findByOwner_Name(name);
+    //     return service.findAllAccounts();
     // }
 
-    // //Get accounts by owners (DTO)
+    // //Get account by number
+    // @GetMapping("/number/{number}")
+    // public Mono<SavingAccount> getAccountByNumber(@PathVariable String number) 
+    // {
+    //     return service.findByNumber(number);
+    // }
+
+    // //Get account by number DTO
+    // @GetMapping("/numberdto/{number}")
+    // public Mono<SavingAccount> getAccountByNumberDTO(@PathVariable String number) 
+    // {
+    //     return service.findByNumber(number);
+    // }
+
+    //Get accounts by owner Dni
+    @GetMapping("/owner/{dni}")
+    public Mono<SavingAccount> getAccountByOwnerDNi(@PathVariable String dni) 
+    {
+        return service.findByOwnerDni(dni);
+    }
+
+    // //Get accounts by owner Dni (DTO)
     // @GetMapping("/ownerdto/{name}")
     // public Mono<SavingAccountDTO> getAccountByOwnerDTO(@PathVariable String name) 
     // {

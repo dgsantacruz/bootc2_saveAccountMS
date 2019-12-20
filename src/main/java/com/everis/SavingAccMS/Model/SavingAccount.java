@@ -1,8 +1,8 @@
 package com.everis.SavingAccMS.Model;
 
-import java.security.acl.Owner;
-
 import javax.validation.constraints.NotBlank;
+
+import com.everis.SavingAccMS.Model.Owner;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -19,7 +19,6 @@ public class SavingAccount
     @NotBlank
     private String number;
 
-    @NotBlank
     private Owner owner;
 
     @NotBlank
