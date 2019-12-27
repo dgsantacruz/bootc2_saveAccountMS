@@ -1,11 +1,16 @@
 package com.everis.SavingAccMS.Service.Impl;
 
+import com.everis.SavingAccMS.DTO.SavingAccountDTO;
 import com.everis.SavingAccMS.Model.SavingAccount;
 import com.everis.SavingAccMS.Repository.SavingAccountRepo;
 import com.everis.SavingAccMS.Service.SavingAccountService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -13,6 +18,8 @@ import reactor.core.publisher.Mono;
 @Service
 public class SavingAccountServiceImpl implements SavingAccountService 
 {
+
+    Logger logger = LoggerFactory.getLogger(SavingAccountServiceImpl.class);
 
     @Autowired
     private SavingAccountRepo repo;
@@ -26,9 +33,9 @@ public class SavingAccountServiceImpl implements SavingAccountService
 
     //Get all accounts DTO
     @Override
-    public Flux<SavingAccount> findAllAccountsDTO() 
+    public Flux<SavingAccountDTO> findAllAccountsDTO() 
     {
-        return null;
+        return repo.findAll().map(account -> new SavingAccountDTO(account.getNumber(), account.getCurrency()));
     }
 
     //Get account by Number
@@ -40,9 +47,9 @@ public class SavingAccountServiceImpl implements SavingAccountService
 
     //Get account by Number DTO
     @Override
-    public Mono<SavingAccount> findByNumberDTO(String number) 
+    public Mono<SavingAccountDTO> findByNumberDTO(String number) 
     {
-        return null;
+        return repo.findByNumber(number).map(account -> new SavingAccountDTO(account.getNumber(), account.getCurrency()));
     }
 
     //Get account by Owner Dni
@@ -54,16 +61,19 @@ public class SavingAccountServiceImpl implements SavingAccountService
 
     //Get account by Owner Dni DTO
     @Override
-    public Mono<SavingAccount> findByOwnerDniDTO(String dni) 
+    public Mono<SavingAccountDTO> findByOwnerDniDTO(String dni) 
     {
-        return repo.findByOwner_Dni(dni);
+        return repo.findByOwner_Dni(dni).map(account -> new SavingAccountDTO(account.getNumber(), account.getCurrency()));
     }
 
     //Create Account
     @Override
     public Mono<SavingAccount> addAccount(SavingAccount account) 
     {
-        return repo.save(account);
+        //Added validation to avoid creating an account when a user already have it. Still dont know how to throw an error.
+        return repo.findByOwner_Dni(account.getOwner().getDni())
+                    .switchIfEmpty(repo.save(account));
+                    
     }
 
     //Update account data

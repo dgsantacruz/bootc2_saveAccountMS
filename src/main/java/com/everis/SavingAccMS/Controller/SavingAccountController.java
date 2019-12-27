@@ -33,39 +33,32 @@ public class SavingAccountController
         return service.findAllAccounts();
     }
 
-    // //Get All Accounts DTO
-    // @GetMapping("/alldto")
-    // public Flux<SavingAccount> getAllAccountsDTO() 
-    // {
-    //     return service.findAllAccounts();
-    // }
+    //Get All Accounts (DTO)
+    @GetMapping("/alldto")
+    public Flux<SavingAccountDTO> getAllAccountsDTO() 
+    {
+        return service.findAllAccountsDTO();
+    }
 
-    // //Get account by number
-    // @GetMapping("/number/{number}")
-    // public Mono<SavingAccount> getAccountByNumber(@PathVariable String number) 
-    // {
-    //     return service.findByNumber(number);
-    // }
+    //Get account by number
+    @GetMapping("/number/{number}")
+    public Mono<SavingAccount> getAccountByNumber(@PathVariable String number) 
+    {
+        return service.findByNumber(number);
+    }
 
-    // //Get account by number DTO
-    // @GetMapping("/numberdto/{number}")
-    // public Mono<SavingAccount> getAccountByNumberDTO(@PathVariable String number) 
-    // {
-    //     return service.findByNumber(number);
-    // }
+    //Get account by number (DTO)
+    @GetMapping("/numberdto/{number}")
+    public Mono<SavingAccountDTO> getAccountByNumberDTO(@PathVariable String number) 
+    {
+        return service.findByNumberDTO(number);
+    }
 
     //Get accounts by owner Dni
     @GetMapping("/owner/{dni}")
-    public Mono<SavingAccount> getAccountByOwnerDNi(@PathVariable String dni) 
+    public Mono<SavingAccount> getAccountByOwnerDni(@PathVariable String dni) 
     {
         return service.findByOwnerDni(dni);
-    }
-
-    //Get accounts by owner Dni (DTO)
-    @GetMapping("/ownerdto/ltest/{message}")
-    public String littletest(@PathVariable String message) 
-    {
-        return "Working test, new test! " + message;
     }
 
     //Get accounts by owner Dni (DTO)
@@ -100,10 +93,5 @@ public class SavingAccountController
     public Mono<Void> deleteAccount(@PathVariable String number)
     {
         return service.findByNumber(number).flatMap(a -> service.delAccount(a));
-    }
-
-
-    
-    
-    
+    }    
 }

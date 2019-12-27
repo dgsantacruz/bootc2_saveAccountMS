@@ -13,6 +13,4 @@ public interface SavingAccountRepo extends ReactiveMongoRepository<SavingAccount
     Mono<SavingAccount> findByNumber(String number);
 
     Mono<SavingAccount> findByOwner_Dni(String dni);
-
-    Mono<SavingAccount> findByOwner(Owner owner);
 }
