@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.everis.SavingAccMS.DTO.SavingAccountDTO;
+import com.everis.SavingAccMS.DTO.Movement.MoneyOperationDTO;
 import com.everis.SavingAccMS.Model.SavingAccount;
 
 import reactor.core.publisher.Flux;
@@ -76,16 +77,9 @@ public class SavingAccountController
 
     //Update account
     @PutMapping("/edit/{number}")
-    public Mono<SavingAccount> editAccount(@RequestBody SavingAccount account,@PathVariable String number)
+    public Mono<SavingAccount> editAccount(@PathVariable String number, @RequestBody SavingAccount account)
     {
-        return service.findByNumber(number)
-                        .flatMap(a -> 
-                        {
-                            a.setNumber(account.getNumber());
-                            // a.setOwner(account.getOwner());
-                            a.setCurrency(account.getCurrency());
-                            return service.addAccount(a);
-                        });
+        return service.updateAccount(number, account);
     }
 
     //Delete Account
@@ -93,5 +87,12 @@ public class SavingAccountController
     public Mono<Void> deleteAccount(@PathVariable String number)
     {
         return service.findByNumber(number).flatMap(a -> service.delAccount(a));
-    }    
+    }
+
+    //Deposit amount
+    @PutMapping("/deposit")
+    public Mono<MoneyOperationDTO> deposit(@RequestBody MoneyOperationDTO deposit)
+    {
+        return service.deposit(deposit);        
+    }
 }

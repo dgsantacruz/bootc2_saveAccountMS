@@ -1,6 +1,7 @@
 package com.everis.SavingAccMS.Service;
 
 import com.everis.SavingAccMS.DTO.SavingAccountDTO;
+import com.everis.SavingAccMS.DTO.Movement.MoneyOperationDTO;
 import com.everis.SavingAccMS.Model.SavingAccount;
 
 import reactor.core.publisher.Flux;
@@ -30,10 +31,13 @@ public interface SavingAccountService
     public Mono<SavingAccount> addAccount(SavingAccount account);
 
     //Update account data
-    public Mono<SavingAccount> updateAccount(SavingAccount account);
+    public Mono<SavingAccount> updateAccount(String number, SavingAccount account);
 
     //Delete account data
     public Mono<Void> delAccount(SavingAccount account);
+
+    //Deposit
+    public Mono<MoneyOperationDTO> deposit(MoneyOperationDTO deposit);
 
 
 }

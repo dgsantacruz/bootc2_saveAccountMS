@@ -1,6 +1,7 @@
 package com.everis.SavingAccMS.Service.Impl;
 
 import com.everis.SavingAccMS.DTO.SavingAccountDTO;
+import com.everis.SavingAccMS.DTO.Movement.MoneyOperationDTO;
 import com.everis.SavingAccMS.Model.SavingAccount;
 import com.everis.SavingAccMS.Repository.SavingAccountRepo;
 import com.everis.SavingAccMS.Service.SavingAccountService;
@@ -78,9 +79,16 @@ public class SavingAccountServiceImpl implements SavingAccountService
 
     //Update account data
     @Override
-    public Mono<SavingAccount> updateAccount(SavingAccount account) 
+    public Mono<SavingAccount> updateAccount(String number, SavingAccount account) 
     {
-        return null;
+        return repo.findByNumber(number)
+                        .flatMap(acc -> 
+                        {
+                            acc.setNumber(account.getNumber());
+                            // a.setOwner(account.getOwner());
+                            acc.setCurrency(account.getCurrency());
+                            return repo.save(acc);
+                        });
     }
 
     //Delete Account
@@ -88,5 +96,18 @@ public class SavingAccountServiceImpl implements SavingAccountService
     public Mono<Void> delAccount(SavingAccount account) 
     {
         return repo.delete(account);
+    }
+
+    //Deposit
+    @Override
+    public Mono<MoneyOperationDTO> deposit(MoneyOperationDTO deposit)
+    {
+        return repo.findByNumber(deposit.getMoneyDestination())
+                        .flatMap(acc -> 
+                        {
+                            acc.setBalance(acc.getBalance() + deposit.getAmount());
+                            repo.save(acc).subscribe();
+                            return Mono.just(deposit);
+                        });
     }
 }
