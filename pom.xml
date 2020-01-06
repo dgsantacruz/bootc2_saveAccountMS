@@ -86,6 +86,7 @@
       <scope>runtime</scope>
     </dependency>
   </dependencies>
+<!--
   <repositories>
     <repository>
       <id>jcenter-snapshots</id>
@@ -93,6 +94,7 @@
       <url>http://oss.jfrog.org/artifactory/oss-snapshot-local/</url>
     </repository>
   </repositories>
+-->
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -111,5 +113,6 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
     </plugins>
+    <finalName>SavingAccountJar</finalName>
   </build>
 </project>
